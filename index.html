@@ -1252,7 +1252,7 @@
                 requiresAllFound: true,
                 choices: [
                     {
-                        text: '✅ Ich habe alle 6 Einrichtungen (Not-Aus, Augendusche, Löschdecke, Feuerlöscher, Verbandskasten, Fluchtplan) verinnerlicht!',
+                        text: 'Ich habe alle 6 Einrichtungen (Not-Aus, Augendusche, Löschdecke, Feuerlöscher, Verbandskasten, Fluchtplan) verinnerlicht!',
                         type: 'safe',
                         points: 150,
                         feedback: 'Ausgezeichnet! Du weißt nun genau, wo lebensrettende Ausrüstung im Ernstfall hängt.',
@@ -1441,7 +1441,7 @@
                 visualState: 'fire_emergency',
                 choices: [
                     {
-                        text: '🛡️ Person sofort hinlegen & rollen, die Löschdecke von der Wand reißen und Flammen von oben ersticken',
+                        text: 'Person sofort hinlegen & rollen, die Löschdecke von der Wand reißen und Flammen von oben ersticken',
                         type: 'safe',
                         points: 150,
                         feedback: 'Lebensrettende Heldentat! Durch das Ersticken mit der Löschdecke erlischt das Feuer in Sekunden.',
@@ -1730,16 +1730,10 @@
                     const btn = document.createElement('button');
                     btn.className = 'choice-btn';
                     
-                    let badgeIcon = '👉';
-                    if (choice.type === 'safe') badgeIcon = '🛡️';
-                    if (choice.type === 'warning') badgeIcon = '⚠️';
-                    if (choice.type === 'critical') badgeIcon = '⛔';
-
                     // Bei der Erkundungsphase: Button erst nach 6/6 freischalten
                     const notReady = requiresAllFound && this.foundEquip.size < 6;
 
                     btn.innerHTML = `
-                        <span class="choice-icon">${badgeIcon}</span>
                         <div class="choice-content">${notReady ? '🔒 Finde zuerst alle 6 Sicherheitseinrichtungen im Labor-Bild oben!' : choice.text}</div>
                     `;
 
