@@ -606,50 +606,198 @@
             font-weight: 700;
         }
 
+        .cert-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 18px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(251, 191, 36, 0.3);
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .cert-signature-line {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .signature-line-dash {
+            width: 140px;
+            border-bottom: 1px solid #475569;
+        }
+
         /* Druckansicht: Zertifikat auf max. 1 DIN-A4-Seite */
         @media print {
-            body, #game-app, header, .game-grid, .stage-card,
-            .action-card, .modal-overlay:not(#success-modal) {
+            @page {
+                size: A4 portrait;
+                margin: 12mm 15mm;
+            }
+
+            *, *::before, *::after {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            html, body {
+                background: #ffffff !important;
+                background-image: none !important;
+                color: #0f172a !important;
+                min-height: auto !important;
+                height: auto !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: visible !important;
+            }
+
+            /* Alle Spiel-Elemente und UI-Elemente ausblenden (body darf NIEMALS ausgeblendet werden) */
+            #game-app,
+            header,
+            .game-grid,
+            .stage-card,
+            .action-card,
+            .modal-overlay:not(#success-modal),
+            #feedback-modal,
+            #gameover-modal,
+            #accident-effect,
+            #success-modal .name-input,
+            #success-modal .primary-action-btn,
+            .primary-action-btn {
                 display: none !important;
             }
+
             #success-modal {
-                display: flex !important;
+                display: block !important;
                 position: static !important;
-                background: none !important;
+                inset: auto !important;
+                background: transparent !important;
                 backdrop-filter: none !important;
                 padding: 0 !important;
+                margin: 0 auto !important;
+                width: 100% !important;
+                height: auto !important;
+                min-height: auto !important;
+                overflow: visible !important;
             }
+
             #success-modal .modal-card {
                 box-shadow: none !important;
-                border: 2px solid #ccc !important;
-                background: #fff !important;
-                color: #000 !important;
-                max-width: 100% !important;
+                border: 2px solid #b45309 !important;
+                border-radius: 14px !important;
+                background: #ffffff !important;
+                color: #0f172a !important;
+                max-width: 680px !important;
                 width: 100% !important;
-                padding: 24px !important;
-                page-break-inside: avoid;
+                padding: 24px 20px !important;
+                margin: 0 auto !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                animation: none !important;
+                transform: none !important;
             }
+
+            #success-modal .modal-icon {
+                font-size: 38px !important;
+                margin-bottom: 6px !important;
+            }
+
             #success-modal .modal-title {
-                color: #b8860b !important;
+                color: #b45309 !important;
+                font-size: 1.4rem !important;
+                margin-bottom: 4px !important;
             }
+
             #success-modal .modal-body {
-                color: #333 !important;
+                color: #475569 !important;
+                font-size: 0.95rem !important;
+                margin-bottom: 16px !important;
             }
+
             .certificate-card {
-                background: #fff !important;
-                border-color: #b8860b !important;
+                background: #f8fafc !important;
+                border: 2px solid #b45309 !important;
+                border-radius: 12px !important;
                 box-shadow: none !important;
+                padding: 20px 18px !important;
+                margin-bottom: 0 !important;
+                width: 100% !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
             }
-            .cert-header { color: #b8860b !important; }
-            .cert-name { color: #000 !important; border-color: #ccc !important; }
+
+            .cert-header {
+                color: #b45309 !important;
+                font-size: 0.85rem !important;
+                letter-spacing: 0.15em !important;
+                font-weight: 800 !important;
+                margin-bottom: 6px !important;
+            }
+
+            .cert-name {
+                color: #0f172a !important;
+                border-bottom: 2px solid #cbd5e1 !important;
+                font-size: 1.5rem !important;
+                font-weight: 800 !important;
+                padding-bottom: 6px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .certificate-card div,
+            .certificate-card .cert-subtext {
+                color: #334155 !important;
+            }
+
+            #cert-score-display {
+                color: #059669 !important;
+                font-size: 1.25rem !important;
+                font-weight: 800 !important;
+                margin: 8px 0 !important;
+            }
+
+            .cert-badges {
+                display: flex !important;
+                justify-content: center !important;
+                gap: 8px !important;
+                margin-top: 12px !important;
+                flex-wrap: wrap !important;
+            }
+
             .cert-badge-pill {
-                background: #fffbeb !important;
-                border-color: #b8860b !important;
+                background: #fef3c7 !important;
+                border: 1px solid #d97706 !important;
                 color: #92400e !important;
+                font-weight: 700 !important;
+                padding: 4px 10px !important;
+                border-radius: 999px !important;
+                font-size: 0.8rem !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
-            #success-modal .name-input,
-            #success-modal .primary-action-btn {
-                display: none !important;
+
+            .cert-footer {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: flex-end !important;
+                margin-top: 20px !important;
+                padding-top: 14px !important;
+                border-top: 1px dashed #cbd5e1 !important;
+                font-size: 0.85rem !important;
+                color: #64748b !important;
+            }
+
+            .cert-footer span,
+            .cert-footer div {
+                color: #64748b !important;
+            }
+
+            .signature-line-dash {
+                width: 160px !important;
+                border-bottom: 1px solid #94a3b8 !important;
             }
         }
 
@@ -1090,7 +1238,7 @@
             <div class="certificate-card">
                 <div class="cert-header">SCHUL-SICHERHEITSPASS CHEMIE</div>
                 <div class="cert-name" id="cert-student-name">Schüler/in</div>
-                <div style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 8px;">
+                <div class="cert-subtext" style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 8px;">
                     hat die Sicherheitsbelehrung für Fachräume erfolgreich abgeschlossen.
                 </div>
                 <div style="font-size: 1.3rem; font-weight: 800; color: #10b981; margin: 8px 0;" id="cert-score-display">
@@ -1101,12 +1249,19 @@
                     <span class="cert-badge-pill">🔥 Brandschutz</span>
                     <span class="cert-badge-pill">🧪 Gefahrstoff-Experte</span>
                 </div>
+                <div class="cert-footer">
+                    <div id="cert-date-display">Datum: --.--.----</div>
+                    <div class="cert-signature-line">
+                        <div class="signature-line-dash"></div>
+                        <span>Unterschrift Lehrkraft</span>
+                    </div>
+                </div>
             </div>
 
             <input type="text" class="name-input" id="student-name-input" placeholder="Trage deinen Namen für das Zertifikat ein..." maxlength="30" oninput="game.updateCertName(this.value)">
 
             <button class="primary-action-btn" onclick="window.print()" style="background: #334155;">
-                🖨️ Zertifikat drucken / Speichern
+                🖨️ Zertifikat drucken / Als PDF speichern
             </button>
         </div>
     </div>
@@ -1562,7 +1717,8 @@
                     gameoverScore: document.getElementById('gameover-score'),
                     successModal: document.getElementById('success-modal'),
                     certName: document.getElementById('cert-student-name'),
-                    certScore: document.getElementById('cert-score-display')
+                    certScore: document.getElementById('cert-score-display'),
+                    certDateDisplay: document.getElementById('cert-date-display')
                 };
 
                 this.bindEvents();
@@ -1871,7 +2027,17 @@
 
             showSuccess() {
                 this.sound.playSuccess();
-                this.dom.certScore.textContent = `${this.score} Punkte`;
+                let gradeText = 'Sehr gut';
+                if (this.score >= 1200) gradeText = 'Hervorragend';
+                else if (this.score >= 900) gradeText = 'Sehr gut';
+                else if (this.score >= 600) gradeText = 'Gut';
+                else gradeText = 'Bestanden';
+                this.dom.certScore.textContent = `${this.score} Punkte (Note: ${gradeText})`;
+
+                if (this.dom.certDateDisplay) {
+                    const today = new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+                    this.dom.certDateDisplay.textContent = `Datum: ${today}`;
+                }
                 this.dom.successModal.style.display = 'flex';
             }
 
